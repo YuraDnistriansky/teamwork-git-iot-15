@@ -9,12 +9,12 @@ def line():
     """
     function is going line
     """
-    i = 0
-    while i < 40:
+    a = 0
+    while a < 40:
         print('_', end='')
         t.sleep(0.001)
-        i += 1
-
+        a += 1
+        
 class Book:
     """
     Class 'Book', that has characteristics of a book in a bookshop
@@ -43,7 +43,6 @@ class Book:
         """
         Returns the number_of_sales value
         """
-
         return self.__number_of_sales 
 
     def __str__(self):
@@ -52,6 +51,7 @@ class Book:
         """
         return f"{self.__name} by {self.__author} -- Price = {self.__price}" \
                f" -- Sales = {self.__number_of_sales}"
+        
     def __repr__(self):
         """
         returns representation of the object, that can be used to restore the object
@@ -64,48 +64,52 @@ class BookShop:
     Class, that has the list of books to sort
     can add and remove books
     """
-    def __init__(self):
+    def __init__(self, books=None):
         """
         attributes creation
         """
-        self.__books = []
+        if books is None:
+            self.__books = []
+        else:
+            self.__books = books
+            
     def add_book(self, book_add):
         """
         function to add an object to a list that is a attribute of a class
         """
         self.__books.append(book_add)
+        
     def remove_book(self, book_remove):
         """
         function to remove an object from a list that is an attribute of a class
         """
         self.__books.remove(book_remove)
+        
     def get_top_books_by_price(self, n):
         """
         function to sort by price objects, that are list items
         """
         sorted_books = sorted(self.__books, key=lambda x: x.price, reverse=True)
         return sorted_books[:n]
+        
     def get_top_books_by_sales(self, n):
         """
         function to sort by number of sales object, that are list items
         """
         sorted_books = sorted(self.__books, key=lambda x: x.number_of_sales, reverse=True)
         return sorted_books[:n]
+        
     def __str__(self):
         """
         returns a string representstion of the oblect
         """
         return "\n".join(str(book) for book in self.__books)
+        
     def __repr__(self):
         """
         returns representation of the object, that can be used to restore the object
         """
         return f"BookShop ({self.__books})"
-    def __del__(self):
-        """
-        returns a strings befor deleting the object
-        """
-        print("You deleted the object, that was created based on a class BookShop")
         
 if __name__ == "__main__":
     
@@ -134,11 +138,5 @@ if __name__ == "__main__":
     print("Top books by sales")
     for i, book in enumerate(top_books_by_sales, 1):
         print(i, book)
-        
-    line()
-    
-    book_shop.remove_book(book_1)
-    book_shop.remove_book(book_2)
-    book_shop.remove_book(book_3)
-    book_shop.remove_book(book_4)
+
     
