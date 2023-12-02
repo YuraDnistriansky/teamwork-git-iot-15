@@ -19,7 +19,7 @@ class Book:
     """
     Class 'Book', that has characteristics of a book in a bookshop
     """
-    
+    # pylint: disable = R0913
     def __init__(self, name, price, number_of_pages, author, quantity, number_of_sales):
         """
         passing values to attributes
